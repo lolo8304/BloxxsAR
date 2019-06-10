@@ -18,6 +18,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     private ARRaycastManager arRaycastManager;
     private ARPlaneManager arPlaneManager;
     private SelectionManager selectionManager;
+
     private Pose placementPose;
     private bool placementPoseIsValid = false;
 
@@ -29,14 +30,24 @@ public class ARTapToPlaceObject : MonoBehaviour
         arPlaneManager = FindObjectOfType<ARPlaneManager>();
         selectionManager = FindObjectOfType<SelectionManager>();
         clickToRemoveSound = FindObjectOfType<AudioSource>();
+
         objectToPlace.tag = "Selectable";
         objectToPlace.transform.tag = "Selectable";
     }
 
 
-    private bool hasValidTouch() {
-        return this.placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+    public void setObjectToPlace(GameObject obj) {
+        objectToPlace = obj;
+        Console.Write("set object to place "+obj.name);
+        objectToPlace.tag = "Selectable";
+        objectToPlace.transform.tag = "Selectable";
+
     }
+
+    private bool hasValidPlacement() {
+        return this.placementPoseIsValid;
+    }
+
     private bool hasValidSelection() {
         return selectionManager.getSelection() != null;
     }
@@ -45,20 +56,19 @@ public class ARTapToPlaceObject : MonoBehaviour
     {
         UpdatePlacementPose();
         UpdatePlacementIndicator();
-        if (hasValidTouch()) {
-            // if object in front of ray is selected then remove it on touch
-            if (hasValidSelection()) {
-                selectionManager.destroySelection();
-                clickToRemoveSound.PlayDelayed(0.1f);
-            } else {
-                PlaceObject();
-            }
+        if (selectionManager.hasValidPinchZooming()) {
+        } else if (selectionManager.hasValidClickTouch()) {
+            selectionManager.destroySelection();
+            clickToRemoveSound.PlayDelayed(0.1f);
+        } else if (hasValidPlacement() && selectionManager.hasValidNewPlacementTouch()) {
+            PlaceObject();
         }
     }
 
     private void PlaceObject()
     {
         var placedObject = Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
+        placedObject.transform.Rotate(0.0f, 180.0f, 0.0f);
         placedObject.tag = "Selectable";
         
     }
