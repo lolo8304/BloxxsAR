@@ -11,11 +11,13 @@ public class ARTapToPlaceObject : MonoBehaviour
 {
 
     public GameObject objectToPlace;
+    private AudioSource clickToRemoveSound;
     public GameObject placementIndicator;
 
     private ARSessionOrigin arOrigin;
     private ARRaycastManager arRaycastManager;
     private ARPlaneManager arPlaneManager;
+    private SelectionManager selectionManager;
     private Pose placementPose;
     private bool placementPoseIsValid = false;
 
@@ -25,14 +27,18 @@ public class ARTapToPlaceObject : MonoBehaviour
         arOrigin = FindObjectOfType<ARSessionOrigin>();
         arRaycastManager = FindObjectOfType<ARRaycastManager>();
         arPlaneManager = FindObjectOfType<ARPlaneManager>();
+        selectionManager = FindObjectOfType<SelectionManager>();
+        clickToRemoveSound = FindObjectOfType<AudioSource>();
         objectToPlace.tag = "Selectable";
         objectToPlace.transform.tag = "Selectable";
-
     }
 
 
     private bool hasValidTouch() {
         return this.placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+    }
+    private bool hasValidSelection() {
+        return selectionManager.getSelection() != null;
     }
     // Update is called once per frame
     void Update()
@@ -40,7 +46,13 @@ public class ARTapToPlaceObject : MonoBehaviour
         UpdatePlacementPose();
         UpdatePlacementIndicator();
         if (hasValidTouch()) {
-            PlaceObject();
+            // if object in front of ray is selected then remove it on touch
+            if (hasValidSelection()) {
+                selectionManager.destroySelection();
+                clickToRemoveSound.PlayDelayed(0.1f);
+            } else {
+                PlaceObject();
+            }
         }
     }
 

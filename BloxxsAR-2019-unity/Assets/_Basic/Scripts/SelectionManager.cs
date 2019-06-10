@@ -20,6 +20,18 @@ public class SelectionManager : MonoBehaviour
         _oldSelection = null;
     }
 
+    public Transform getSelection() {
+        return _selection;
+    }
+    public void destroySelection() {
+        if (_selection != null) {
+            Destroy(_selection.gameObject);
+            _selection = null;
+            _oldSelection = null;
+            _selectionMaterial = null;
+            _oldSelectionMaterial = null;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
