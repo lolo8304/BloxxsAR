@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1111704796147618339}
   - component: {fileID: -1790580578951103656}
   - component: {fileID: 2344701027827148603}
-  - component: {fileID: 7192792443758532952}
+  - component: {fileID: 6250703538327348253}
   m_Layer: 0
-  m_Name: Game Piece
+  m_Name: Robot Prefab
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,8 +79,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7192792443758532952
-BoxCollider:
+--- !u!64 &6250703538327348253
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -89,9 +89,10 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: 01571ba68fb2dad46aa03094ab219579, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0769868, y: 1.5768298, z: 0.26624262}
-  m_Center: {x: 0, y: 0.7873576, z: -0.0154325105}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300006, guid: b235179bd2a63d1468dd430670338c55, type: 3}
 --- !u!1 &8353267222803639902
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8898391149882354476}
   - component: {fileID: 9009342220832618777}
-  - component: {fileID: 6132196087621244340}
+  - component: {fileID: 1844410865625607938}
   m_Layer: 0
   m_Name: Ninja Prefab
   m_TagString: Untagged
@@ -49,8 +49,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &6132196087621244340
-MeshCollider:
+--- !u!65 &1844410865625607938
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -59,10 +59,9 @@ MeshCollider:
   m_Material: {fileID: 13400000, guid: 01571ba68fb2dad46aa03094ab219579, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300002, guid: 24bdb7cc7a8d8a745a84df6c531bc19d, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.0489634, y: 1.6862764, z: 2.2873397}
+  m_Center: {x: 0.16839874, y: 0.8070617, z: 0.2715211}
 --- !u!1001 &3573174778766705610
 PrefabInstance:
   m_ObjectHideFlags: 0
