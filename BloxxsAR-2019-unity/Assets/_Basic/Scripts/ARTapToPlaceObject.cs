@@ -44,6 +44,10 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     }
 
+    public void startGame(GameObject startButton) {
+        
+    }
+
     private bool hasValidPlacement() {
         return this.placementPoseIsValid;
     }
@@ -90,7 +94,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         //var screenRay = Camera.current.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
         var hits = new List<ARRaycastHit>();
-        arRaycastManager.Raycast(screenCenter, hits, trackableTypes: TrackableType.PlaneWithinBounds | TrackableType.PlaneWithinPolygon);
+        arRaycastManager.Raycast(screenCenter, hits, trackableTypes: TrackableType.PlaneEstimated);
 
         //var hits = new List<XRRaycastHit>(arPlaneManager.Raycast(screenRay, TrackableType.All, Allocator.None));
         placementPoseIsValid = hits.Count > 0;
