@@ -144,7 +144,7 @@ public class SelectionManager : MonoBehaviour
             var rootSelection = selection.root;
             if (rootSelection.CompareTag(selectedTag)) {
                 if (rootSelection != _oldSelection) {
-                    Console.Write("ray hit object tagged="+rootSelection.tag+", name="+rootSelection.name);Console.WriteLine();
+                    //Console.Write("ray hit object tagged="+rootSelection.tag+", name="+rootSelection.name);Console.WriteLine();
                     var selectionRenderer = rootSelection.GetComponentInChildren<Renderer>();
                     if (selectionRenderer != null) {
                         _selectionMaterial = selectionRenderer.material;
